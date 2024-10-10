@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABDALLA BASSEM | AI Engineer</title>
+    <!-- Font Awesome CDN -->
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        integrity="sha512-pap1jfXUV2XZ+7K+ryFjh4Bk+fj7IfnjWcJU7bT1c6L99VzQZUPw5Ykq91uJ59RwE2zV5TqF8I8CVz6+P3a0dA==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" 
+    />
+    <!-- Bootstrap Icons CDN -->
+    <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" 
+        integrity="sha512-0/VvJg1z8uY5rW+J07gXkOphqefY/K88nrAIelKFdbB1dAMi7OZbcbh+v0QkKV8PvtO/6r9m0h3dK4Qj5znexA==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" 
+    />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            padding: 1rem 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(51, 51, 51, 0.9);
+            padding: 0.5rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: center; /* Center items initially */
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 2rem;
+            position: relative;
+            transition: padding 0.5s ease, justify-content 0.5s ease;
+        }
+
+        nav.scrolled .container {
+            justify-content: flex-start; /* Align items to start when scrolled */
+        }
+
+        /* Navbar Profile Image */
+        .navbar-profile {
+            position: absolute;
+            left: 50%;
+            top: 70px;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #007BFF;
+            transition: all 0.5s ease;
+            z-index: 999;
+        }
+
+        nav.scrolled .navbar-profile {
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-width: 2px;
+        }
+
+        /* Logo */
+        nav .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            margin-left: 0; /* Reset margin */
+            transition: margin-left 0.5s ease;
+        }
+
+        nav.scrolled .logo {
+            margin-left: 60px; /* Adjust after the profile image shrinks */
+        }
+
+        /* Navigation Links */
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin-left: auto;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007BFF;
+        }
+
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: #fff;
+            margin-bottom: 4px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Sliding Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -250px; /* Hidden by default */
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            padding-top: 60px; /* Space for close button */
+            transition: right 0.3s ease;
+            z-index: 1050;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar ul {
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 1.5rem;
+        }
+
+        .sidebar ul li {
+            margin: 1.5rem 0;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            color: #007BFF;
+        }
+
+        /* Overlay Styles */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Header Section */
+        header {
+            background: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 80px; /* To prevent overlap with navbar */
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(51, 51, 51, 0.6);
+        }
+
+        header .content {
+            position: relative;
+            color: #fff;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        header .content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        header h1.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ddd;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        header p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        header .cta-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, opacity 1s ease, transform 1s ease;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        header .cta-button.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        header .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Main Content Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: #fff;
+        }
+
+        #projects h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #333;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        #projects h2.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, opacity 1s ease, transform 1s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .project-card i {
+            font-size: 3rem;
+            color: #007BFF;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .project-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-top: 0.5rem;
+        }
+
+        /* Resume Section */
+        #resume {
+            background-color: #f0f2f5;
+        }
+
+        #resume h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: #333;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        #resume h2.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .resume-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .contact-info.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            color: #555;
+        }
+
+        .contact-info a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info .social-icons a {
+            margin: 0 0.5rem;
+            color: #555;
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .contact-info .social-icons a:hover {
+            color: #007BFF;
+            transform: scale(1.2);
+        }
+
+        .resume-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .resume-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .resume-section h3 {
+            color: #007BFF;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .resume-section h4 {
+            color: #333;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .resume-section ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            color: #555;
+        }
+
+        .resume-section ul ul {
+            list-style-type: circle;
+            padding-left: 1.5rem;
+        }
+
+        .resume-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skills-grid div {
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .social-icons a {
+            margin: 0 0.5rem;
+            color: #fff;
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            color: #007BFF;
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            nav .container {
+                padding: 0 1.5rem;
+            }
+
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .resume-section {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .projects-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            nav .logo {
+                margin-left: 10px;
+            }
+
+            nav.scrolled .logo {
+                margin-left: 60px;
+            }
+
+            .navbar-profile {
+                display: none;
+            }
+
+            nav.scrolled .navbar-profile {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav .container {
+                padding: 0 1rem;
+            }
+
+            /* Hide the original nav links and show the hamburger */
+            nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+                margin-left: auto;
+            }
+
+            /* Adjust logo and profile image */
+            nav .logo {
+                margin-left: 10px;
+            }
+
+            .navbar-profile {
+                display: none;
+            }
+
+            nav.scrolled .navbar-profile {
+                display: block;
+            }
+
+            /* Sidebar styles are handled separately */
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            .cta-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .project-card i {
+                font-size: 2.5rem;
+            }
+
+            .resume-section h3 {
+                font-size: 1.5rem;
+            }
+
+            nav .logo {
+                font-size: 1.2rem;
+            }
+
+            nav .logo {
+                margin-left: 10px;
+            }
+
+            nav.scrolled .logo {
+                margin-left: 60px;
+            }
+        }
+
+        /* Animation for Hamburger to X */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Sliding Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <div class="container">
+            <!-- Navbar Profile Image -->
+            <img src="https://media.licdn.com/dms/image/v2/D4E03AQHuixmODhb3tg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1706242850225?e=1733961600&v=beta&t=TOet3HIxDIIMD1Q8WJEguIHWZROHV2YxkRTEDH4Ow-s" alt="ABDALLA BASSEM" class="navbar-profile" id="navbar-profile">
+
+            <a href="#header" class="logo">ABDALLA BASSEM</a>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="header">
+        <div class="content">
+            <h1>ABDALLA BASSEM</h1>
+            <p>AI Engineer | NLP & Machine Learning Specialist</p>
+            <a href="#resume" class="cta-button">View My Resume</a>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2>My Projects</h2>
+        <div class="projects-container">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <a href="https://github.com/yourusername/project1" target="_blank">
+                    <i class="fas fa-code"></i>
+                    <div class="project-title">Project One</div>
+                </a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <a href="https://github.com/yourusername/project2" target="_blank">
+                    <i class="fas fa-paint-brush"></i>
+                    <div class="project-title">Project Two</div>
+                </a>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <a href="https://github.com/yourusername/project3" target="_blank">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div class="project-title">Project Three</div>
+                </a>
+            </div>
+
+            <!-- Add more projects as needed -->
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <h2>About Me & Resume</h2>
+        <div class="resume-content">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <p>Egypt, Giza, 6th of October</p>
+                <p>Email: <a href="mailto:abdallah.bassem369@gmail.com">abdallah.bassem369@gmail.com</a> | Phone: <a href="tel:+201098670634">+20 1098670634</a></p>
+                <p><strong>ABDALLA BASSEM</strong> | <em>AI ENGINEER</em></p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/abdallah-ibrahim-1170142b1/" target="_blank" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <!-- Add more social icons here if needed -->
+                </div>
+            </div>
+
+            <!-- Professional Summary -->
+            <div class="resume-section">
+                <h3>Professional Summary</h3>
+                <p>Innovative AI specialist with a strong foundation in Natural Language Processing and Machine Learning. Experienced in fine-tuning large language models and developing efficient AI solutions. Proven track record of reducing costs and improving processes through creative problem-solving and cutting-edge AI implementations. Adept at offering novel solutions and adapting quickly to new challenges in the rapidly evolving field of artificial intelligence.</p>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="resume-section">
+                <h3>Work Experience</h3>
+                <ul>
+                    <li><strong>Machine Learning and NLP Intern</strong> | Spiro Carbon Group | Remote | June 2024 - Present
+                        <ul>
+                            <li>Conduct research projects in AI with a focus on NLP and Computer Vision.</li>
+                            <li>Collaborate with team members to develop and implement AI solutions.</li>
+                            <li>Fine-tuned large language models such as Mistral 7B, Llama 2, Llama 3, and others.</li>
+                            <li>Built a custom dataset and developed metrics for evaluating dataset quality.</li>
+                            <li>Fully scraped websites to gather data for training and evaluation.</li>
+                            <li>Built LangChain applications.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Machine Learning and NLP Intern</strong> | Smsm | Remote | February 2024 - Present
+                        <ul>
+                            <li>Implement end-to-end AI solutions, ensuring seamless integration and operational efficiency.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- AI Solutions Projects -->
+            <div class="resume-section">
+                <h3>AI Solutions Projects</h3>
+                <ul>
+                    <li><strong>Sentiment Analysis for Customer Feedback</strong>
+                        <ul>
+                            <li>Developed an AI-powered sentiment analysis tool to process customer feedback data.</li>
+                            <li>Utilized NLP techniques and deep learning models to classify sentiment and extract key insights.</li>
+                            <li>Achieved 90% accuracy in sentiment classification, enabling data-driven decision-making.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Intelligent Chatbot for Customer Support</strong>
+                        <ul>
+                            <li>Built an AI-driven chatbot to handle customer inquiries and provide instant support.</li>
+                            <li>Implemented NLP and machine learning algorithms to understand user intent and provide accurate responses.</li>
+                            <li>Reduced customer wait times by 60% and improved customer satisfaction scores.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Automated Customer Service Chatbot</strong>
+                        <ul>
+                            <li>Developed a chatbot to streamline customer interactions and automate common support requests.</li>
+                            <li>Leveraged sentiment analysis, text summarization, and department routing to efficiently handle inquiries and improve user experience.</li>
+                        </ul>
+                    </li>
+                    <li><strong>AI-Powered Product Search Engine</strong>
+                        <ul>
+                            <li>Built a search engine that allows users to find products using natural language descriptions instead of specific keywords.</li>
+                            <li>Utilized natural language processing and web scraping techniques to identify relevant items and provide links to online retailers.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Voice Assistant for Language Translation</strong>
+                        <ul>
+                            <li>Created a voice assistant that transcribes and translates speech in real-time, enabling communication across language barriers.</li>
+                            <li>Experimented with various voice-to-text and translation APIs to optimize accuracy and performance.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Technical Skills -->
+            <div class="resume-section">
+                <h3>Technical Skills</h3>
+                <div class="skills-grid">
+                    <div>
+                        <h4>Programming Languages</h4>
+                        <ul>
+                            <li>Python</li>
+                            <li>C++</li>
+                            <li>C#</li>
+                            <li>SQL</li>
+                            <li>PHP</li>
+                            <li>JavaScript</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Machine Learning & AI</h4>
+                        <ul>
+                            <li>PyTorch</li>
+                            <li>Neural Networks</li>
+                            <li>Deep Learning</li>
+                            <li>Natural Language Processing (NLP)</li>
+                            <li>Machine Learning</li>
+                            <li>Hyperparameter Tuning</li>
+                            <li>Fine-tuning Large Language Models</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Data Science & Analysis</h4>
+                        <ul>
+                            <li>Pandas</li>
+                            <li>NumPy</li>
+                            <li>Matplotlib</li>
+                            <li>Data Analysis</li>
+                            <li>Dataset Preparation and Evaluation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>AI Frameworks & Tools</h4>
+                        <ul>
+                            <li>LangChain</li>
+                            <li>Unsloth</li>
+                            <li>TensorFlow</li>
+                            <li>Keras</li>
+                            <li>Scikit-learn</li>
+                            <li>Hugging Face Transformers</li>
+                            <li>NLTK</li>
+                            <li>SpaCy</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Web Scraping & Parsing</h4>
+                        <ul>
+                            <li>BeautifulSoup</li>
+                            <li>Requests</li>
+                            <li>Selenium</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Database Management</h4>
+                        <ul>
+                            <li>MySQL</li>
+                            <li>SQL Server</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Development Environments & Tools</h4>
+                        <ul>
+                            <li>Visual Studio Code</li>
+                            <li>DevC++</li>
+                            <li>Anaconda</li>
+                            <li>Jupyter Notebook</li>
+                            <li>PyCharm</li>
+                            <li>Google Colab</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Software Engineering Projects -->
+            <div class="resume-section">
+                <h3>Software Engineering Projects</h3>
+                <ul>
+                    <li><strong>Money Transfer Website - Group Project</strong>
+                        <ul>
+                            <li><strong>Description:</strong> Designed and implemented a secure online money transfer website using PHP, HTML, and JavaScript.</li>
+                            <li><strong>Methodology:</strong> Followed SDLC, conducted brainstorming sessions, and gathered requirements.</li>
+                            <li><strong>Visual Models:</strong> Created use case diagrams and data flow diagrams.</li>
+                            <li><strong>Security Features:</strong> Implemented input validation, password hashing, and session management.</li>
+                        </ul>
+                    </li>
+                    <li><strong>University Management System - Group Project</strong>
+                        <ul>
+                            <li><strong>Description:</strong> Developed a relational database using SQL, MySQL, and SQL Server for managing university data (students, courses, enrollment, faculty, hall allocations).</li>
+                            <li><strong>Technical Skills:</strong> Created SQL queries and stored procedures to ensure data integrity and consistency.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Research & Analysis</strong>
+                        <ul>
+                            <li><strong>Leveraging AI in Business - Group Project</strong>
+                                <ul>
+                                    <li><strong>Description:</strong> Authored a paper on AI applications in business functions.</li>
+                                    <li><strong>Analysis:</strong> Studied case examples to show AI's impact on efficiency, decision-making, customer experience, and competitive advantage.</li>
+                                    <li><strong>Focus:</strong> Examined AI technologies like machine learning, natural language processing, and computer vision in marketing, sales, operations, and finance.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Education -->
+            <div class="resume-section">
+                <h3>Education</h3>
+                <p><strong>Computer Science</strong> | Thebes Academy | GPA: 3.7 | 2021-2025</p>
+                <ul>
+                    <li>Focused on developing strong programming and problem-solving skills through coursework in data structures, algorithms, object-oriented programming (OOP), and database management.</li>
+                    <li>Actively participated in class discussions and group projects, demonstrating effective communication, teamwork, and leadership abilities.</li>
+                    <li>Eager to apply theoretical knowledge to practical applications, as demonstrated by implementing projects like the secure online money transfer website and the university management system.</li>
+                    <li>Continuously seeking opportunities to expand technical skills and knowledge, including exploring advanced topics like AI and machine learning through independent research and extracurricular activities.</li>
+                </ul>
+            </div>
+
+            <!-- Soft Skills -->
+            <div class="resume-section">
+                <h3>Soft Skills</h3>
+                <ul>
+                    <li>Effective Time Management</li>
+                    <li>Creative Problem-Solving</li>
+                    <li>Active Listening</li>
+                    <li>Attention to Detail</li>
+                    <li>Efficiency</li>
+                    <li>Productivity</li>
+                    <li>Continuous Learning</li>
+                    <li>Efficiency Under Pressure</li>
+                    <li>Critical Thinking</li>
+                    <li>Team Leadership</li>
+                    <li>Social Skills</li>
+                    <li>Analytical Thinking</li>
+                    <li>Logical Reasoning</li>
+                    <li>Creativity</li>
+                </ul>
+            </div>
+
+            <!-- Courses -->
+            <div class="resume-section">
+                <h3>Courses</h3>
+                <ul>
+                    <li><strong>Machine Learning Specialization</strong> | Coursera | Andrew Ng
+                        <ul>
+                            <li>Comprehensive study of machine learning foundations, covering supervised learning (linear regression, logistic regression, neural networks, decision trees), unsupervised learning (clustering, anomaly detection), and best practices in machine learning development.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Natural Language Processing Specialization</strong> | Coursera | Andrew Ng
+                        <ul>
+                            <li>In-depth exploration of NLP techniques, including sentiment analysis, machine translation, word embeddings, sequence models (RNNs, LSTMs), attention mechanisms, and transformer models for various language tasks.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2024 ABDALLA BASSEM | <a href="mailto:abdallah.bassem369@gmail.com">abdallah.bassem369@gmail.com</a></p>
+        <p>Follow me on 
+            <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a> | 
+            <a href="https://www.linkedin.com/in/abdallah-ibrahim-1170142b1/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </p>
+    </footer>
+
+    <!-- Smooth Scrolling and Navigation Toggle Script -->
+    <script>
+        // Handle Scroll Events
+        function handleScroll() {
+            const navbar = document.getElementById('navbar');
+            const scrollThreshold = 100; // Adjust this value as needed
+
+            if (window.scrollY > scrollThreshold) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Reveal elements on scroll
+            const hiddenElements = document.querySelectorAll('.content, header h1, header p, .cta-button, #projects h2, .project-card, #resume h2, .contact-info, .resume-section');
+            hiddenElements.forEach(elem => {
+                const rect = elem.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    elem.classList.add('visible');
+                }
+            });
+        }
+
+        // Attach Scroll Event Listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Initial Check in Case Elements Are Already in View
+        window.addEventListener('load', handleScroll);
+
+        // Handle Window Resize to Adjust Layout Dynamically
+        window.addEventListener('resize', handleScroll);
+
+        // Smooth Scrolling for Internal Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Close the mobile menu after clicking
+                closeSidebar();
+            });
+        });
+
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking on overlay
+        overlay.addEventListener('click', () => {
+            closeSidebar();
+        });
+
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
