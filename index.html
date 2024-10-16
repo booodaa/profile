@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABDALLA BASSEM | AI Engineer</title>
-    <!-- Font Awesome CDN -->
     <link 
         rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
@@ -12,7 +11,6 @@
         crossorigin="anonymous" 
         referrerpolicy="no-referrer" 
     />
-    <!-- Bootstrap Icons CDN -->
     <link 
         rel="stylesheet" 
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" 
@@ -20,18 +18,14 @@
         crossorigin="anonymous" 
         referrerpolicy="no-referrer" 
     />
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
     <style>
-        /* Reset some default styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body Styling */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f0f2f5;
@@ -39,7 +33,6 @@
             line-height: 1.6;
         }
 
-        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
@@ -57,7 +50,7 @@
 
         nav .container {
             display: flex;
-            justify-content: center; /* Center items initially */
+            justify-content: center;
             align-items: center;
             max-width: 1200px;
             margin: auto;
@@ -67,10 +60,9 @@
         }
 
         nav.scrolled .container {
-            justify-content: flex-start; /* Align items to start when scrolled */
+            justify-content: flex-start;
         }
 
-        /* Navbar Profile Image */
         .navbar-profile {
             position: absolute;
             left: 50%;
@@ -94,21 +86,19 @@
             border-width: 2px;
         }
 
-        /* Logo */
         nav .logo {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
             color: #fff;
             text-decoration: none;
-            margin-left: 0; /* Reset margin */
+            margin-left: 0;
             transition: margin-left 0.5s ease;
         }
 
         nav.scrolled .logo {
-            margin-left: 60px; /* Adjust after the profile image shrinks */
+            margin-left: 60px;
         }
 
-        /* Navigation Links */
         nav ul {
             list-style: none;
             display: flex;
@@ -130,7 +120,6 @@
             color: #007BFF;
         }
 
-        /* Hamburger Menu Styles */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -147,17 +136,16 @@
             transition: all 0.3s ease;
         }
 
-        /* Sliding Sidebar Navigation */
         .sidebar {
             position: fixed;
             top: 0;
-            right: -250px; /* Hidden by default */
+            right: -250px;
             width: 250px;
             height: 100%;
             background-color: #333;
             display: flex;
             flex-direction: column;
-            padding-top: 60px; /* Space for close button */
+            padding-top: 60px;
             transition: right 0.3s ease;
             z-index: 1050;
         }
@@ -186,7 +174,6 @@
             color: #007BFF;
         }
 
-        /* Overlay Styles */
         .overlay {
             position: fixed;
             top: 0;
@@ -205,7 +192,6 @@
             visibility: visible;
         }
 
-        /* Header Section */
         header {
             background: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
             height: 100vh;
@@ -213,7 +199,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding-top: 80px; /* To prevent overlap with navbar */
+            padding-top: 80px;
             flex-direction: column;
             text-align: center;
             overflow: hidden;
@@ -295,14 +281,12 @@
             background-color: #0056b3;
         }
 
-        /* Main Content Sections */
         .section {
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: auto;
         }
 
-        /* Projects Section */
         #projects {
             background-color: #fff;
         }
@@ -363,7 +347,6 @@
             margin-top: 0.5rem;
         }
 
-        /* Resume Section */
         #resume {
             background-color: #f0f2f5;
         }
@@ -476,7 +459,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -487,7 +469,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Footer */
         footer {
             background-color: #333;
             color: #fff;
@@ -516,7 +497,6 @@
             transform: scale(1.2);
         }
 
-        /* Responsive Design */
         @media (max-width: 1200px) {
             nav .container {
                 padding: 0 1.5rem;
@@ -562,7 +542,6 @@
                 padding: 0 1rem;
             }
 
-            /* Hide the original nav links and show the hamburger */
             nav ul {
                 display: none;
             }
@@ -572,7 +551,6 @@
                 margin-left: auto;
             }
 
-            /* Adjust logo and profile image */
             nav .logo {
                 margin-left: 10px;
             }
@@ -584,8 +562,6 @@
             nav.scrolled .navbar-profile {
                 display: block;
             }
-
-            /* Sidebar styles are handled separately */
         }
 
         @media (max-width: 480px) {
@@ -623,7 +599,6 @@
             }
         }
 
-        /* Animation for Hamburger to X */
         .hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
@@ -639,10 +614,8 @@
 </head>
 <body>
 
-    <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- Sliding Sidebar Navigation -->
     <div class="sidebar" id="sidebar">
         <ul>
             <li><a href="#projects">Projects</a></li>
@@ -651,10 +624,8 @@
         </ul>
     </div>
 
-    <!-- Navigation Bar -->
     <nav id="navbar">
         <div class="container">
-            <!-- Navbar Profile Image -->
             <img src="https://media.licdn.com/dms/image/v2/D4E03AQHuixmODhb3tg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1706242850225?e=1733961600&v=beta&t=TOet3HIxDIIMD1Q8WJEguIHWZROHV2YxkRTEDH4Ow-s" alt="ABDALLA BASSEM" class="navbar-profile" id="navbar-profile">
 
             <a href="#header" class="logo">ABDALLA BASSEM</a>
@@ -672,7 +643,6 @@
         </div>
     </nav>
 
-    <!-- Header Section -->
     <header id="header">
         <div class="content">
             <h1>ABDALLA BASSEM</h1>
@@ -681,11 +651,9 @@
         </div>
     </header>
 
-    <!-- Projects Section -->
     <section id="projects" class="section">
         <h2>My Projects</h2>
         <div class="projects-container">
-            <!-- Project 1 -->
             <div class="project-card">
                 <a href="https://github.com/yourusername/project1" target="_blank">
                     <i class="fas fa-code"></i>
@@ -693,7 +661,6 @@
                 </a>
             </div>
 
-            <!-- Project 2 -->
             <div class="project-card">
                 <a href="https://github.com/yourusername/project2" target="_blank">
                     <i class="fas fa-paint-brush"></i>
@@ -701,23 +668,18 @@
                 </a>
             </div>
 
-            <!-- Project 3 -->
             <div class="project-card">
                 <a href="https://github.com/yourusername/project3" target="_blank">
                     <i class="fas fa-mobile-alt"></i>
                     <div class="project-title">Project Three</div>
                 </a>
             </div>
-
-            <!-- Add more projects as needed -->
         </div>
     </section>
 
-    <!-- Resume Section -->
     <section id="resume" class="section">
         <h2>About Me & Resume</h2>
         <div class="resume-content">
-            <!-- Contact Information -->
             <div class="contact-info">
                 <p>Egypt, Giza, 6th of October</p>
                 <p>Email: <a href="mailto:abdallah.bassem369@gmail.com">abdallah.bassem369@gmail.com</a> | Phone: <a href="tel:+201098670634">+20 1098670634</a></p>
@@ -726,17 +688,14 @@
                     <a href="https://www.linkedin.com/in/abdallah-ibrahim-1170142b1/" target="_blank" aria-label="LinkedIn">
                         <i class="bi bi-linkedin"></i>
                     </a>
-                    <!-- Add more social icons here if needed -->
                 </div>
             </div>
 
-            <!-- Professional Summary -->
             <div class="resume-section">
                 <h3>Professional Summary</h3>
                 <p>Innovative AI specialist with a strong foundation in Natural Language Processing and Machine Learning. Experienced in fine-tuning large language models and developing efficient AI solutions. Proven track record of reducing costs and improving processes through creative problem-solving and cutting-edge AI implementations. Adept at offering novel solutions and adapting quickly to new challenges in the rapidly evolving field of artificial intelligence.</p>
             </div>
 
-            <!-- Work Experience -->
             <div class="resume-section">
                 <h3>Work Experience</h3>
                 <ul>
@@ -758,7 +717,6 @@
                 </ul>
             </div>
 
-            <!-- AI Solutions Projects -->
             <div class="resume-section">
                 <h3>AI Solutions Projects</h3>
                 <ul>
@@ -797,7 +755,6 @@
                 </ul>
             </div>
 
-            <!-- Technical Skills -->
             <div class="resume-section">
                 <h3>Technical Skills</h3>
                 <div class="skills-grid">
@@ -878,7 +835,6 @@
                 </div>
             </div>
 
-            <!-- Software Engineering Projects -->
             <div class="resume-section">
                 <h3>Software Engineering Projects</h3>
                 <ul>
@@ -910,7 +866,6 @@
                 </ul>
             </div>
 
-            <!-- Education -->
             <div class="resume-section">
                 <h3>Education</h3>
                 <p><strong>Computer Science</strong> | Thebes Academy | GPA: 3.7 | 2021-2025</p>
@@ -922,7 +877,6 @@
                 </ul>
             </div>
 
-            <!-- Soft Skills -->
             <div class="resume-section">
                 <h3>Soft Skills</h3>
                 <ul>
@@ -943,7 +897,6 @@
                 </ul>
             </div>
 
-            <!-- Courses -->
             <div class="resume-section">
                 <h3>Courses</h3>
                 <ul>
@@ -962,7 +915,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="contact">
         <p>&copy; 2024 ABDALLA BASSEM | <a href="mailto:abdallah.bassem369@gmail.com">abdallah.bassem369@gmail.com</a></p>
         <p>Follow me on 
@@ -971,12 +923,10 @@
         </p>
     </footer>
 
-    <!-- Smooth Scrolling and Navigation Toggle Script -->
     <script>
-        // Handle Scroll Events
         function handleScroll() {
             const navbar = document.getElementById('navbar');
-            const scrollThreshold = 100; // Adjust this value as needed
+            const scrollThreshold = 100;
 
             if (window.scrollY > scrollThreshold) {
                 navbar.classList.add('scrolled');
@@ -984,7 +934,6 @@
                 navbar.classList.remove('scrolled');
             }
 
-            // Reveal elements on scroll
             const hiddenElements = document.querySelectorAll('.content, header h1, header p, .cta-button, #projects h2, .project-card, #resume h2, .contact-info, .resume-section');
             hiddenElements.forEach(elem => {
                 const rect = elem.getBoundingClientRect();
@@ -994,16 +943,12 @@
             });
         }
 
-        // Attach Scroll Event Listener
         window.addEventListener('scroll', handleScroll);
 
-        // Initial Check in Case Elements Are Already in View
         window.addEventListener('load', handleScroll);
 
-        // Handle Window Resize to Adjust Layout Dynamically
         window.addEventListener('resize', handleScroll);
 
-        // Smooth Scrolling for Internal Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1014,12 +959,10 @@
                     });
                 }
 
-                // Close the mobile menu after clicking
                 closeSidebar();
             });
         });
 
-        // Hamburger Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
@@ -1030,7 +973,6 @@
             hamburger.classList.toggle('active');
         });
 
-        // Close sidebar when clicking on overlay
         overlay.addEventListener('click', () => {
             closeSidebar();
         });
