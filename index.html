@@ -100,24 +100,38 @@
             margin-left: 60px;
         }
 
-        nav ul {
-            list-style: none;
+        #nav-links {
             display: flex;
+            list-style: none;
             margin-left: auto;
         }
 
-        nav ul li {
+        #nav-links li {
             margin-left: 2rem;
         }
 
-        nav ul li a {
+        #nav-links li a {
             color: #fff;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
         }
 
-        nav ul li a:hover {
+        #nav-links li a svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+            margin-right: 8px;
+            transition: fill 0.3s ease;
+        }
+
+        #nav-links li a:hover svg {
+            fill: #007BFF;
+        }
+
+        #nav-links li a:hover {
             color: #007BFF;
         }
 
@@ -617,9 +631,22 @@
                 <span></span>
             </div>
             <ul id="nav-links">
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="https://www.linkedin.com/in/abdallah-ibrahim-1170142b1/" target="_blank" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path d="M100.28 448H7.4V148.9h92.88zm-46.44-340C24.2 108 0 83.8 0 53.6S24.2 0 53.84 0 107.68 24.2 107.68 53.6 83.38 108 53.84 108zm384 340h-92.68V302.4c0-34.7-.7-79.3-48.34-79.3-48.4 0-55.8 37.8-55.8 76.8V448h-92.68V148.9h89V184h1.3c12.4-23.5 42.7-48.3 87.88-48.3 94 0 111.3 61.8 111.3 142.3V448z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.upwork.com/freelancers/~0112e79a7194c874ab" target="_blank" aria-label="Upwork">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                            <path d="M496 256C496 397.4 397.4 496 256 496S16 397.4 16 256 114.6 16 256 16s240 98.6 240 240zM203.2 204.8h55.2v163.2h-55.2V204.8zm27.6-51.2c17.6 0 32-14.4 32-32s-14.4-32-32-32-32 14.4-32 32 14.4 32 32 32zm180.8 51.2h55.2v81.6c0 16.8-3.2 33.6-24 33.6-24 0-27.6-18.4-27.6-37.6v-52h-55.2V204.8h55.2v32c7.6-14.8 26-32 47.6-32z"/>
+                        </svg>
+                        Upwork
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
