@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABDALLA BASSEM | AI Engineer</title>
     <link 
         rel="stylesheet" 
@@ -32,7 +32,6 @@
             background-color: #121212;
             color: #f0f2f5;
             line-height: 1.6;
-            font-size: 1rem;
         }
 
         nav {
@@ -95,9 +94,6 @@
             text-decoration: none;
             margin-left: 0;
             transition: margin-left 0.5s ease;
-            padding: 0.5rem;
-            min-width: 44px;
-            min-height: 44px;
         }
 
         nav.scrolled .logo {
@@ -121,16 +117,13 @@
             transition: color 0.3s ease;
             display: flex;
             align-items: center;
-            padding: 0.5rem;
-            min-width: 44px;
-            min-height: 44px;
         }
 
         #nav-links li a svg {
-            width: 1.5rem;
-            height: 1.5rem;
+            width: 24px;
+            height: 24px;
             fill: #f0f2f5;
-            margin-right: 0.5rem;
+            margin-right: 8px;
             transition: fill 0.3s ease;
         }
 
@@ -143,9 +136,9 @@
         }
 
         #nav-links li a img {
-            width: 1.5rem;
-            height: 1.5rem;
-            margin-right: 0.5rem;
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
             transition: opacity 0.3s ease;
         }
 
@@ -158,9 +151,6 @@
             flex-direction: column;
             cursor: pointer;
             z-index: 1100;
-            padding: 0.5rem;
-            min-width: 44px;
-            min-height: 44px;
         }
 
         .hamburger span {
@@ -204,9 +194,6 @@
             color: #f0f2f5;
             font-size: 1.2rem;
             transition: color 0.3s ease;
-            padding: 0.5rem;
-            min-width: 44px;
-            min-height: 44px;
         }
 
         .sidebar ul li a:hover {
@@ -379,7 +366,7 @@
             margin-bottom: 1rem;
         }
 
-        .project-title {
+        .project-card .project-title {
             font-size: 1.2rem;
             font-weight: 600;
             color: #f0f2f5;
@@ -450,14 +437,14 @@
             text-decoration: underline;
         }
 
-        .social-icons a {
+        .contact-info .social-icons a {
             margin: 0 0.5rem;
             color: #cccccc;
             font-size: 1.5rem;
             transition: color 0.3s, transform 0.3s;
         }
 
-        .social-icons a:hover {
+        .contact-info .social-icons a:hover {
             color: #007BFF;
             transform: scale(1.2);
         }
@@ -653,7 +640,7 @@
 
     <nav id="navbar">
         <div class="container">
-            <img src="profile-small.jpg" data-src="profile.jpg" class="navbar-profile lazy" alt="ABDALLA BASSEM" id="navbar-profile">
+            <img src="profile.jpg" alt="ABDALLA BASSEM" class="navbar-profile" id="navbar-profile">
 
             <a href="#header" class="logo">ABDALLA BASSEM</a>
 
@@ -696,7 +683,7 @@
         <div class="projects-container">
             <div class="project-card">
                 <a href="https://chatgpt-1a49c.web.app/" target="_blank">
-                    <img src="project1-small.jpg" data-src="project1.jpg" class="lazy" alt="Project One Image">
+                    <img src="project1.jpg" alt="Project One Image">
                     <i class="fas fa-code"></i>
                     <div class="project-title">Nuance AI</div>
                 </a>
@@ -704,7 +691,7 @@
 
             <div class="project-card">
                 <a href="https://question-generator-cc9ac.web.app/" target="_blank">
-                    <img src="project2-small.jpg" data-src="project2.jpg" class="lazy" alt="Project Two Image">
+                    <img src="project2.jpg" alt="Project Two Image">
                     <i class="fas fa-paint-brush"></i>
                     <div class="project-title">Question Generator</div>
                 </a>
@@ -951,6 +938,7 @@
     </section>
 
     <footer id="contact">
+
     </footer>
 
     <script>
@@ -971,22 +959,12 @@
                     elem.classList.add('visible');
                 }
             });
-
-            const lazyImages = document.querySelectorAll('img.lazy');
-            lazyImages.forEach(img => {
-                const rect = img.getBoundingClientRect();
-                if (rect.top < window.innerHeight + 100) {
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                        img.classList.remove('lazy');
-                    }
-                }
-            });
         }
 
         window.addEventListener('scroll', handleScroll);
+
         window.addEventListener('load', handleScroll);
+
         window.addEventListener('resize', handleScroll);
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1022,12 +1000,6 @@
             overlay.classList.remove('active');
             hamburger.classList.remove('active');
         }
-
-        hamburger.addEventListener('touchstart', () => {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }, false);
     </script>
 
 </body>
